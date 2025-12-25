@@ -1,4 +1,13 @@
 # Innovex-PM-AI-agent
+Team name=Strangers Code
+Team members are:
+Mehak Sethi
+Aadya Gupta
+Akanchha Singh
+Simarjeet Kaur
+
+Problem statement selected- The PM AI agent
+
 The PM AI Agent automates project management tasks by analyzing task data and
 providing intelligent insights. It generates:
 
