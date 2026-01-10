@@ -16,6 +16,9 @@ providing intelligent insights. It generates:
 - Deadline tracking alerts
 - Risk prediction (Low / Medium / High)
 - Natural language responses to user queries
+- One click PM report
+- Bottleneck Finder
+- Task Priority Scorer
 
 The AI logic is modular and designed to simulate real-world integrations with
 tools like Jira, Trello, and Slack.
