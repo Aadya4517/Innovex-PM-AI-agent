@@ -1,0 +1,268 @@
+/* =====================
+   THEME VARIABLES
+===================== */
+
+:root {
+  --bg: #f6f8fb;
+  --card: #ffffff;
+  --text: #0f172a;
+  --shadow: rgba(0, 0, 0, 0.08);
+}
+
+body[data-theme="dark"] {
+  --bg: radial-gradient(circle at top, #0b1220, #020617);
+  --card: #0f172a;
+  --text: #e5e7eb;
+  --shadow: rgba(0, 0, 0, 0.6);
+}
+
+/* =====================
+   GLOBAL RESET
+===================== */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* =====================
+   LAYOUT
+===================== */
+
+.dashboard {
+  padding: 32px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.live {
+  color: #22c55e;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.theme-btn {
+  background: #2563eb;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* =====================
+   STATS CARDS
+===================== */
+
+.stats-grid {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--card);
+  padding: 22px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px var(--shadow);
+  text-align: center;
+}
+
+.card h4 {
+  margin-bottom: 10px;
+  opacity: 0.7;
+}
+
+.card span {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.blue { color: #2563eb; }
+.green { color: #22c55e; }
+.yellow { color: #facc15; }
+.red { color: #ef4444; }
+
+/* =====================
+   SECTIONS
+===================== */
+
+.section-title {
+  margin: 40px 0 20px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* =====================
+   RISK GRID
+===================== */
+
+.risk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 24px;
+}
+
+/* =====================
+   TASK HEALTH (Priority + Stuck)
+===================== */
+
+.task-health-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.health-card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 22px 24px;
+  box-shadow: 0 10px 30px var(--shadow);
+}
+
+.health-card.danger {
+  border-left: 5px solid #ff4d4f;
+}
+
+.card-title {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+/* =====================
+   TASK ROWS
+===================== */
+
+.task-row,
+.priority-row,
+.stuck-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+body[data-theme="dark"] .task-row,
+body[data-theme="dark"] .priority-row,
+body[data-theme="dark"] .stuck-row {
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.task-row:last-child,
+.priority-row:last-child,
+.stuck-row:last-child {
+  border-bottom: none;
+}
+
+.task-name {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.task-meta,
+.stuck-meta {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* =====================
+   PRIORITY BADGES
+===================== */
+
+.badge {
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+}
+
+.badge.high { background: #ff4d4f; }
+.badge.medium { background: #faad14; }
+.badge.low { background: #52c41a; }
+
+/* =====================
+   AUTOMATION / SLACK
+===================== */
+
+.automation-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: 20px;
+}
+
+.slack-card button {
+  margin-top: 12px;
+  padding: 10px;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.slack-card button:hover {
+  background: #4338ca;
+}
+
+/* =====================
+   EMPTY STATES
+===================== */
+
+.empty {
+  text-align: center;
+  color: #777;
+  font-size: 14px;
+}
+.muted {
+  opacity: 0.7;
+  font-size: 14px;
+}
+
+.report-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.secondary-btn {
+  padding: 12px;
+  border-radius: 10px;
+  background: transparent;
+  border: 2px solid #4f46e5;
+  color: #4f46e5;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.report-preview {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.report-preview h4 {
+  margin-top: 14px;
+  margin-bottom: 6px;
+}
+
+.report-preview ul {
+  padding-left: 18px;
+}

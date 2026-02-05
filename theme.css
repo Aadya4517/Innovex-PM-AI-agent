@@ -1,0 +1,177 @@
+/* =====================
+   THEME VARIABLES
+===================== */
+
+:root {
+  --bg: #f6f8fb;
+  --card: #ffffff;
+  --text: #0f172a;
+  --shadow: rgba(0, 0, 0, 0.08);
+}
+
+body[data-theme="dark"] {
+  --bg: radial-gradient(circle at top, #0b1220, #020617);
+  --card: #0f172a;
+  --text: #e5e7eb;
+  --shadow: rgba(0, 0, 0, 0.6);
+}
+
+/* =====================
+   GLOBAL RESET
+===================== */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* =====================
+   LAYOUT
+===================== */
+
+.dashboard {
+  padding: 32px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.live {
+  color: #22c55e;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.theme-btn {
+  background: #2563eb;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* =====================
+   STATS
+===================== */
+
+.stats-grid {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--card);
+  padding: 22px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px var(--shadow);
+  text-align: center;
+}
+
+.stat p {
+  opacity: 0.7;
+  margin: 0;
+}
+
+.stat h2 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.blue { color: #2563eb; }
+.green { color: #22c55e; }
+.yellow { color: #facc15; }
+.red { color: #ef4444; }
+
+/* =====================
+   SECTIONS
+===================== */
+
+h2 {
+  margin: 40px 0 20px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* =====================
+   RISK / HEALTH GRID
+===================== */
+
+.risk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 24px;
+}
+
+/* =====================
+   TASK HEALTH CARDS
+===================== */
+
+.priority-row,
+.stuck-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+body[data-theme="dark"] .priority-row,
+body[data-theme="dark"] .stuck-row {
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.badge {
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+}
+
+.badge.high { background: #ff4d4f; }
+.badge.medium { background: #faad14; }
+.badge.low { background: #52c41a; }
+
+.card.danger {
+  border-left: 5px solid #ff4d4f;
+}
+
+/* =====================
+   AUTOMATION
+===================== */
+
+.automation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.primary-btn {
+  margin-top: 14px;
+  padding: 12px;
+  width: 100%;
+  border-radius: 10px;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.primary-btn:hover {
+  background: #4338ca;
+}
