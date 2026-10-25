@@ -3,3 +3,6 @@ uvicorn
 slack_sdk
 requests
 python-dotenv
+joblib
+pandas
+scikit-learn

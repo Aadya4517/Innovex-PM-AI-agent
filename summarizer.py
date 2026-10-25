@@ -6,11 +6,11 @@ def summarize_tasks(tasks):
     for task in tasks:
         status = task.get("status", "").lower()
 
-        if status == "completed":
+        if status in {"completed", "done", "resolved", "closed"}:
             completed += 1
-        elif status in ["in progress", "in-progress"]:
+        elif "progress" in status:
             in_progress += 1
-        else:
+        elif status in {"delayed", "blocked", "overdue"}:
             delayed += 1
 
     return (

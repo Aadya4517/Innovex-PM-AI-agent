@@ -48,6 +48,8 @@ export default function PMReportCard() {
           <p><b>Completed:</b> {report.completed ?? 0}</p>
           <p><b>In Progress:</b> {report.in_progress ?? 0}</p>
           <p><b>Delayed:</b> {report.delayed ?? 0}</p>
+          <p><b>Pending:</b> {report.pending ?? 0}</p>
+          <p><b>Slack delivery:</b> {report.slack?.sent ? "Sent" : report.slack?.reason || "Not configured"}</p>
 
           {Array.isArray(report.high_risk_tasks) && report.high_risk_tasks.length > 0 ? (
             <>

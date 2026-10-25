@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+      - name: Install Python dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Check Python syntax
+        run: python -m compileall -q main.py backend routers ai_agent utils jira.py slack.py priority.py summarizer.py train_model.py predict_delay.py scheduler.py realtime.py report.py list_models.py
+      - name: Check backend imports
+        run: python -c "import main; print('Backend imports successfully')"
+      - name: Install frontend dependencies
+        run: npm ci
+      - name: Build dashboard
+        run: npm run build

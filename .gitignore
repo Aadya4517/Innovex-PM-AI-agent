@@ -1,6 +1,11 @@
 venv/
+.venv/
+node_modules/
+dist/
+.vite/
 __pycache__/
 .env
 *.pyc
 .idea/
 .vscode/
+local_tasks.json
