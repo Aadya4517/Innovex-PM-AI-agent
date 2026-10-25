@@ -1,4 +1,82 @@
 # Innovex-PM-AI-agent
+
+## Run locally
+
+Start the FastAPI backend in one terminal:
+
+```powershell
+python -m uvicorn main:app --reload --port 8000
+```
+
+In a second terminal, start the React dashboard:
+
+```powershell
+npm install
+npm run dev
+```
+
+Open the Vite URL printed in the terminal (by default, http://localhost:5173).
+The API health endpoint at http://localhost:8000/ returns JSON; it is not the
+dashboard page. The dashboard calls the backend on port 8000.
+
+## Configure integrations
+
+Install backend dependencies, then copy `.env.example` to `.env` in the project
+root (the same folder as `main.py`) and replace the example values. Never commit
+`.env`; it is ignored by Git.
+
+```powershell
+python -m pip install -r requirements.txt
+Copy-Item .env.example .env
+```
+
+- `GEMINI_API_KEY`: enables Gemini-generated dashboard summaries and answers to
+  project questions. Without it, the dashboard uses rule-based summaries and
+  simple status/deadline questions.
+- `JIRA_BASE_URL`, `JIRA_EMAIL`, `JIRA_API_TOKEN`, and `JIRA_PROJECT_KEY`: read
+  issues from Jira. The Jira account also needs permission to add issue comments
+  for the Send alerts action.
+- `SLACK_WEBHOOK`: enables PM reports and alert delivery to the Slack channel
+  selected when the webhook was created.
+- `DAILY_SLACK_REPORT_ENABLED=true`: turns on the scheduled digest at 09:00 in
+  `SCHEDULER_TIMEZONE` (default `Asia/Kolkata`). It is disabled by default.
+
+Restart the backend after editing `.env`. Check which integrations are configured
+without revealing their secret values at `http://localhost:8000/integrations/status`.
+
+## Try the integrations and prediction features
+
+1. **Gemini:** open the dashboard and check that the summary is marked “Gemini.”
+   Ask a project question such as “Which tasks are delayed?” in “Ask about this
+   project.” The answer shows its source. If Gemini is unavailable, the dashboard
+   falls back to local rules.
+2. **Delay model:** use the ML Delay Forecast form or send this request:
+
+   ```powershell
+   Invoke-RestMethod -Method Post -Uri http://localhost:8000/delay-forecast `
+     -ContentType 'application/json' `
+     -Body '{"estimated_days":5,"priority":3,"dependencies":2,"team_size":3}'
+   ```
+
+   This model was trained on a small sample dataset, so treat its probability as
+   a demonstration signal. `/delay-risk` is a separate estimate-versus-actual
+   duration calculator.
+3. **Slack alerts:** set `SLACK_WEBHOOK`, restart the backend, then click “Send
+   alerts now” on the dashboard. The response reports whether Slack accepted the
+   message. The PM Sprint Report button also sends its report to Slack.
+4. **Jira updates:** with Jira configured, make a test issue overdue, due within
+   seven days, blocked, or delayed. Click “Send alerts now”; the app attempts to
+   add an alert comment to each matching Jira issue. Confirm the comment in that
+   issue’s Activity panel. This is an explicit action and can create comments.
+5. **Scheduled Slack digest:** set `DAILY_SLACK_REPORT_ENABLED=true`, ensure the
+   webhook is configured, and restart the backend. The daily job runs at 09:00
+   in the configured timezone; use “Send alerts now” for an immediate delivery
+   check rather than waiting for the schedule.
+
+The `.github/workflows/ci.yml` workflow checks Python syntax and builds the
+frontend on pushes and pull requests. It does not contain API credentials or call
+the external Gemini, Jira, or Slack services.
+
 Team name=Strangers Code
 Team members are:
 Mehak Sethi
