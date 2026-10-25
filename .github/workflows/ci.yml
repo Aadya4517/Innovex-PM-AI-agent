@@ -20,11 +20,13 @@ jobs:
           node-version: "20"
           cache: npm
       - name: Install Python dependencies
-        run: python -m pip install -r requirements.txt
+        run: python -m pip install -r requirements-dev.txt
       - name: Check Python syntax
         run: python -m compileall -q main.py backend routers ai_agent utils jira.py slack.py priority.py summarizer.py train_model.py predict_delay.py scheduler.py realtime.py report.py list_models.py
       - name: Check backend imports
         run: python -c "import main; print('Backend imports successfully')"
+      - name: Run Python tests
+        run: python -m pytest -q
       - name: Install frontend dependencies
         run: npm ci
       - name: Build dashboard

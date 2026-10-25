@@ -4,6 +4,7 @@ node_modules/
 dist/
 .vite/
 __pycache__/
+.pytest_cache/
 .env
 *.pyc
 .idea/
